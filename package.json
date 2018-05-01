@@ -1,0 +1,36 @@
+{
+  "name": "SVGmandalas",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/MelMepham/SVGmandalas.git",
+  "author": "Melissa Mepham <m.a.mepham@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "postinstall": "webpack",
+    "dev": "nodemon --watch server & webpack --watch",
+    "start": "node server & webpack --watch",
+    "test": "jest --watch",
+    "watch": "nodemon -e js,jsx -x npm test"
+  },
+  "babel": {
+    "presets": [
+      "env",
+      "react"
+    ]
+  },
+  "dependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "body-parser": "^1.18.2",
+    "bundle": "^2.1.0",
+    "express": "^4.16.3",
+    "node": "^10.0.0",
+    "nodemon": "^1.17.3",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-router-dom": "^4.2.2",
+    "webpack": "^3.10.0"
+  }
+}
