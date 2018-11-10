@@ -1,7 +1,9 @@
 
 import React from 'react'
-import { render } from 'react-dom'
-// import Bubble from './Bubble'
+// import BackgroundCircle from './BackgroundCircle'
+import createId from 'incremental-id'
+
+var BackgroundCircle = require('./BackgroundCircle').BackgroundCircle
 
 import { HashRouter as Router, Route } from 'react-router-dom'
 
@@ -10,20 +12,29 @@ class Mandala extends React.Component {
     super(props)
     this.state = {
       fourArray: [1, 2, 3, 4],
-      sixArray: [1, 2, 3, 4, 5, 6]
+      sixArray: [1, 2, 3, 4, 5, 6],
+      baseLayerCircles: []
     }
-    this.HandleClick = this.HandleClick.bind(this)
+    this.clickButton = this.clickButton.bind(this)
     this.createCircles = this.createCircles.bind(this)
   }
 
   componentDidMount() {
+    this.createCircles()
   }
 
-  HandleClick(){
-    console.log('hello')
+  clickButton(id) {
 
+    console.log(id)
+    let newCircles = this.state.baseLayerCircles.map(circle => {
+      if (circle.id === id) {
+        circle.fill="#bada55"
+      }
+      return circle
+    })
+    this.setState({baseLayerCircles: newCircles})
   }
-
+  
   createCircles() {
     let circles = []
     let cx = 30
@@ -32,18 +43,34 @@ class Mandala extends React.Component {
     this.state.sixArray.map(i => {
       cy = i === 1 ? 30 : cy + 60
       this.state.sixArray.map(() => {
-          circles.push(<circle key={Math.random(1000)} cx={cx} cy={cy} r="25" fill="#FFD080"></circle>)
+          let circle = {
+            id: createId(),
+            cx: cx,
+            cy: cy,
+            fill: "#FFD080"
+          }
+          circles.push(circle)
           cx = cx === 330 ? cx = 30 : cx = cx + 60
         })
-    })
-    return circles
+      })
+      this.setState({baseLayerCircles: circles})
   }
 
   render() {
     return (
       <div>
-        <svg className="background box" height="360" width="360">
-          {this.createCircles()}
+        <svg height="360" width="360">
+          {this.state.baseLayerCircles.map(circle => {
+            return <BackgroundCircle
+            key={circle.id}
+            id={circle.id}
+            fill={circle.fill}
+            cx={circle.cx}
+            cy={circle.cy}
+            clickButton={this.clickButton}
+            />
+          })
+          }
         </svg>
       </div>
 
