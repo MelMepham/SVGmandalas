@@ -24626,8 +24626,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-// import BackgroundCircle from './BackgroundCircle'
-
 
 var BackgroundCircle = __webpack_require__(76).BackgroundCircle;
 
@@ -24640,7 +24638,6 @@ var Mandala = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Mandala.__proto__ || Object.getPrototypeOf(Mandala)).call(this, props));
 
     _this.state = {
-      fourArray: [1, 2, 3, 4],
       sixArray: [1, 2, 3, 4, 5, 6],
       baseLayerCircles: []
     };
@@ -24657,8 +24654,6 @@ var Mandala = function (_React$Component) {
   }, {
     key: 'clickButton',
     value: function clickButton(id) {
-
-      console.log(id);
       var newCircles = this.state.baseLayerCircles.map(function (circle) {
         if (circle.id === id) {
           circle.fill = "#bada55";
@@ -24695,6 +24690,8 @@ var Mandala = function (_React$Component) {
     key: 'render',
     value: function render() {
       var _this3 = this;
+
+      var opacityTime = Math.floor(Math.random() * 20).toString() + "s";
 
       return _react2.default.createElement(
         'div',
@@ -24828,13 +24825,38 @@ var BackgroundCircle = function (_React$Component) {
           fill = _props2.fill,
           id = _props2.id;
 
-      return _react2.default.createElement("circle", {
-        onClick: this.click,
-        key: id,
-        fill: fill,
-        cx: cx,
-        cy: cy,
-        r: "25" });
+
+      var opacityTime = Math.floor(Math.random() * 20).toString() + "s";
+      return _react2.default.createElement(
+        "svg",
+        null,
+        _react2.default.createElement(
+          "circle",
+          {
+            cx: cx,
+            cy: cy,
+            r: "30",
+            fill: "#bada55" },
+          _react2.default.createElement("animate", {
+            attributeType: "CSS",
+            attributeName: "opacity",
+            from: "1", to: "1",
+            dur: opacityTime,
+            values: "1; 0; 1",
+            repeatCount: "indefinite" })
+        ),
+        _react2.default.createElement(
+          "svg",
+          null,
+          _react2.default.createElement("circle", {
+            onClick: this.click,
+            key: id,
+            fill: fill,
+            cx: cx,
+            cy: cy,
+            r: "20" })
+        )
+      );
     }
   }]);
 
