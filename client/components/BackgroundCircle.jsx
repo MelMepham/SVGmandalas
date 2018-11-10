@@ -9,7 +9,6 @@ class BackgroundCircle extends React.Component {
 
   click() {
     const { clickButton, id } = this.props
-    console.log(id)
     clickButton(id)
   }
 

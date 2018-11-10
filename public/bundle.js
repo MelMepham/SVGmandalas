@@ -24691,8 +24691,6 @@ var Mandala = function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
-      var opacityTime = Math.floor(Math.random() * 20).toString() + "s";
-
       return _react2.default.createElement(
         'div',
         null,
@@ -24813,7 +24811,6 @@ var BackgroundCircle = function (_React$Component) {
           clickButton = _props.clickButton,
           id = _props.id;
 
-      console.log(id);
       clickButton(id);
     }
   }, {

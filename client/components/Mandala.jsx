@@ -53,7 +53,6 @@ class Mandala extends React.Component {
   }
 
   render() {
-    const opacityTime = Math.floor(Math.random() * 20).toString() + "s"
 
     return (
       <div>
